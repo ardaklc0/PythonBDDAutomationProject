@@ -7,14 +7,19 @@ def pytest_addoption(parser):
 @pytest.fixture(scope="class")
 def test_setup(request):
     from selenium import webdriver
+    from selenium.webdriver.chrome.service import Service as ChromeService
+    from selenium.webdriver.firefox.service import Service as FirefoxService
+    from webdriver_manager.chrome import ChromeDriverManager
+    from webdriver_manager.firefox import GeckoDriverManager
 
     browser = request.config.getoption("--browser")
 
     if browser == 'chrome':
-        driver = webdriver.Chrome(
-            executable_path="C:/Users/Administrator/PycharmProjects/AutomationFramework_1/drivers/chromedriver.exe")
+        service = ChromeService(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service)
     elif browser == 'firefox':
-        driver = webdriver.Firefox(executable_path="C:/Users/Administrator/PycharmProjects/AutomationFramework_1/drivers/geckodriver.exe")
+        service = FirefoxService(GeckoDriverManager().install())
+        driver = webdriver.Firefox(service=service)
 
     driver.implicitly_wait(5)
     driver.maximize_window()
@@ -23,3 +28,28 @@ def test_setup(request):
     driver.close()
     driver.quit()
     print("Test Completed")
+
+@pytest.fixture
+def browser(request):
+    from selenium import webdriver
+    from selenium.webdriver.chrome.service import Service as ChromeService
+    from selenium.webdriver.firefox.service import Service as FirefoxService
+    from webdriver_manager.chrome import ChromeDriverManager
+    from webdriver_manager.firefox import GeckoDriverManager
+
+    browser_name = request.config.getoption("--browser")
+
+    if browser_name == 'chrome':
+        service = ChromeService(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service)
+    elif browser_name == 'firefox':
+        service = FirefoxService(GeckoDriverManager().install())
+        driver = webdriver.Firefox(service=service)
+    else:
+        service = ChromeService(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service)
+
+    driver.implicitly_wait(5)
+    driver.maximize_window()
+    yield driver
+    driver.quit()

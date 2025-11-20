@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+.venv/
+env/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Testing and Reports
+.pytest_cache/
+reports/
+screenshots/
+allure-reports/
+allure-results/
+.coverage
+htmlcov/
+
+# Logs
+*.log
+geckodriver.log
+chromedriver.log
+
+# OS generated files
+.DS_Store
+Thumbs.db

@@ -36,7 +36,7 @@ class TestLogin():
             allure.attach(self.driver.get_screenshot_as_png(),name=screenshotName,
                           attachment_type=allure.attachment_type.PNG)
 
-            driver.get_screenshot_as_file("C:/Users/Administrator/PycharmProjects/AutomationFramework_1/screenshots/" + screenshotName + ".png")
+            driver.get_screenshot_as_file("c:/Users/arkilic/Desktop/PythonAutomationFramework_1/screenshots/" + screenshotName + ".png")
             raise
 
         except:
@@ -48,7 +48,7 @@ class TestLogin():
             allure.attach(self.driver.get_screenshot_as_png(), name=screenshotName,
                           attachment_type=allure.attachment_type.PNG)
             driver.get_screenshot_as_file(
-                "C:/Users/Administrator/PycharmProjects/AutomationFramework_1/screenshots/" + screenshotName + ".png")
+                "c:/Users/arkilic/Desktop/PythonAutomationFramework_1/screenshots/" + screenshotName + ".png")
 
             raise
 
